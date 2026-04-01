@@ -18,6 +18,8 @@ Tenho experiência com trabalho em equipe utilizando metodologias ágeis como Sc
 
 Conheça meu trabalho: inℹ️ [linkedin](https://www.linkedin.com/in/joão-gonçalves01/) | 👾 [GitHub](https://github.com/joao-GON) | 📧 jvm.rjbr@gmail.com
 
+[CLIQUE AQUI PARA RODAR O PROJETO](https://joao-gon.github.io/Netflix-Clone/)
+
 ---
 ## 🚀 Visão Geral
 
