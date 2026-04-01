@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+<!-- O atributo lang define o idioma principal da página para acessibilidade & SEO -->
+<head>
+    <!-- Define o conjunto de caracteres para UTF-8, suportando caracteres acentuados em PT-BR -->
+    <meta charset="UTF-8">
+    <!-- Configura layout responsivo em dispositivos móveis -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Título da aba do navegador -->
+    <title>Netflix</title>
+    <!-- Conecta o arquivo de estilos CSS -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="Icons/netflix_macos_bigsur_icon_189917.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="Icons/netflix_macos_bigsur_icon_189917.png">
+    <!-- Link para Font Awesome icons (para ícones de redes sociais) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Conecta o arquivo JavaScript para funcionalidades interativas -->
+    <script src="script.js"></script>
+    <!-- Conecta o arquivo de navegação para gerenciar stack navigation -->
+    <script src="navigation.js"></script>
+</head>
+
+<body>
+    <!-- Botão para alternar entre Dark Mode e Light Mode -->
+    <button id="theme-toggle" class="theme-toggle" aria-label="Mudar para Dark Mode">
+        🌙 Dark Mode
+    </button>
+    
+    <!-- Botão de Logout -->
+    <button id="logout-btn" class="logout-btn" aria-label="Fazer logout e voltar ao login">
+        🚪 Logout
+    </button>
+    
+    <main>
+    <!-- Conteúdo principal da página (principal target de acessibilidade quando houver role=main implícito) -->
+
+        <h1>Quem está assistindo?</h1>
+        <!-- Título principal indicando seleção de perfil -->
+
+        <section aria-label="Selecionar perfil">
+        <!-- Seção informativa com label de acessibilidade -->
+            <ul class="profiles">
+            <!-- Lista não ordenada contendo os perfis disponíveis -->
+                <li class="profile">
+                <!-- Item de lista representando um perfil -->
+                    <figure>
+                        <img src="Assets/Perfil 1.2.png" alt="Imagem que mostra o avatar masculino do Perfil 1 com um fundo vermelho">
+                    </figure>
+                    <p class="profile-name">Alírio</p>
+                </li>
+
+                <li class="profile">
+                <!-- Item de lista representando um perfil -->
+                    <figure>
+                        <img src="Assets/Perfil 2.2.png" alt="Imagem que mostra o avatar feminino do Perfil 2 com um fundo roxo">
+                    </figure>
+                    <p class="profile-name">Cássea</p>
+                </li>
+
+                <li class="profile">
+                <!-- Item de lista representando um perfil -->
+                    <figure>
+                        <img src="Assets/Perfil 3.2.png" alt="Imagem que mostra o avatar do Perfil 3 com um fundo azul">
+                    </figure>
+                    <p class="profile-name">Amanda e José</p>
+                </li>
+
+                <li class="profile">
+                <!-- Item de lista representando um perfil -->
+                    <figure>
+                        <img src="Assets/Perfil 4.2.png" alt="Imagem que mostra o avatar masculino do Perfil 1 com um fundo vermelho">
+                    </figure>
+                    <p class="profile-name">Dona Rosa</p>
+                </li>
+
+            </ul>
+            <!-- Final da lista de perfis -->
+        </section>
+        <!-- Final da seção de perfis -->
+    </main>
+    <!-- Fim do conteúdo principal -->
+
+    <!-- RODAPÉ DA PÁGINA -->
+    <footer class="container-rodape">
+    <!-- Container do rodapé com informações do desenvolvedor -->
+        <div id="rodape">
+        <!-- Seção interna do rodapé -->
+            <p class="copyright">&copy; 2026 - Todos os direitos reservados</p>
+            <!-- Ano e copyright -->
+            
+            <div class="footer-content">
+                <div class="developer-info">
+                <!-- Informações do desenvolvedor -->
+                    <h3>Desenvolvido por Joao-GON</h3>
+                    <!-- Nome do desenvolvedor -->
+                    <p class="footer-description">Conheça meu trabalho</p>
+                    <!-- Descrição chamada para ação -->
+                </div>
+
+                <div class="social-links">
+                <!-- Links para redes sociais -->
+                    <a href="https://www.linkedin.com/in/jo%C3%A3o-gon%C3%A7alves01/" target="_blank" rel="noopener noreferrer" class="social-link">
+                    <!-- Link do LinkedIn com target="_blank" para abrir em nova aba -->
+                        <i class="fa-brands fa-linkedin"></i> Linkedin
+                    </a>
+                    
+                    <a href="https://github.com/joao-GON" target="_blank" rel="noopener noreferrer" class="social-link">
+                    <!-- Link do GitHub com target="_blank" para abrir em nova aba -->
+                        <i class="fa-brands fa-github"></i> Github
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Fim do rodapé -->
+
+    <script>
+        // Adiciona funcionalidade de navegação ao clicar em qualquer perfil
+        document.addEventListener('DOMContentLoaded', function() {
+            const profiles = document.querySelectorAll('.profile');
+            
+            profiles.forEach(profile => {
+                profile.addEventListener('click', function() {
+                    // Obtém o nome do perfil do elemento .profile-name dentro do card clicado
+                    const profileName = this.querySelector('.profile-name').textContent;
+                    
+                    // Navega para a página de catálogo com o nome do perfil
+                    navigateTo('catalogue', { profileName: profileName });
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>

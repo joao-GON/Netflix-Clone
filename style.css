@@ -1,0 +1,1154 @@
+cat > style.css 
+
+<<'EOF'
+
+* {
+  box-sizing: border-box;                                                /* Faz com que padding e border sejam incluídos na largura/altura total dos elementos */
+}
+body {
+  margin: 0;                                                      /* Remove margens padrão do body */
+  min-height: 100vh;                                              /* Garante altura mínima de 100% da altura da viewport */
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;    /* Define a família de fontes, priorizando Helvetica Neue */
+  color: #333;                                                  /* Define a cor do texto como cinza escuro (light mode) */
+  background: radial-gradient(circle at center, #ffffff 0%, #e8e8e8 40%, #000000 100%); /* Gradiente radial: branco centro → cinza → preto borda */
+  background-attachment: fixed;                                   /* Fixa o fundo para que não role com a página */
+}
+main {
+  display: grid;                                                  /* Usa layout em grid para o main */
+  place-items: center;                                            /* Centraliza itens no grid */
+  align-content: start;                                           /* Alinha o conteúdo ao topo */
+  min-height: 100vh;                                              /* Altura mínima de 100% da viewport */
+  padding: 12rem 1rem 3rem;                                       /* Padding superior de 12rem, lateral de 1rem, inferior de 3rem */
+  text-align: center;                                             /* Alinha texto ao centro */
+  gap: 1rem;                                                      /* Espaçamento entre itens do grid */
+}
+h1 {
+  font-size: clamp(2.2rem, 2.5vw, 3rem);                          /* Tamanho da fonte responsivo entre 2.2rem e 3rem */
+  letter-spacing: 0.04em;                                         /* Espaçamento entre letras */
+  text-transform: uppercase;                                      /* Transforma texto em maiúsculo */
+  margin: 8rem 0 7rem;                                            /* Margem superior de 8rem, inferior de 7rem */
+  color: #e50914;                                               /* Cor do texto vermelho Netflix */
+  text-shadow: 0 0 20px rgba(229, 9, 20, 0.3);                    /* Sombra suave no texto */
+}
+.profiles {
+  display: grid;                                                  /* Layout em grid para os perfis */
+  gap: 1.5rem;                                                    /* Espaçamento entre perfis */
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));    /* Colunas responsivas com largura mínima de 162px */
+  width: min(50%, 720px);                                         /* Largura máxima de 50% ou 720px */
+  margin: 0 auto;                                                 /* Centraliza horizontalmente */
+}
+.profile {
+  background: rgba(255, 255, 255, 0.95);                         /* Fundo semi-transparente branco (light mode) */
+  border: 2px solid rgba(229, 9, 20, 0.2);                      /* Borda fina com cor vermelha suave */
+  border-radius: 15px;                                            /* Bordas arredondadas */
+  transition: transform 0.25s ease, box-shadow 0.50s ease, border-color 0.25s ease;     /* Transições suaves para transform, sombra e cor da borda */
+  overflow: hidden;                                               /* Esconde conteúdo que ultrapassa */
+  cursor: pointer;                                                /* Cursor de ponteiro ao passar o mouse */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);                    /* Sombra suave para profundidade */
+}
+.profile:hover,
+.profile:focus-within {
+  transform: translateY(-5px) scale(1.03);                        /* Move para cima e aumenta ligeiramente no hover/foco */
+  box-shadow: 0 8px 25px rgba(229, 9, 20, 0.3);                 /* Sombra vermelha suave no hover */
+  border-color: rgba(229, 9, 20, 0.6);                          /* Cor da borda vermelha no hover */
+}
+.profile:hover .profile-name {
+  color: #e50914;                                               /* Cor do nome fica vermelha no hover do perfil */
+}
+figure {
+  margin: 0;                                                      /* Remove margens */  
+  padding: 1rem;                                                  /* Padding interno */
+  aspect-ratio: 1 / 1;                                            /* Mantém proporção quadrada */
+  overflow: hidden;                                               /* Esconde overflow */
+  border-radius: 10px;                                            /* Bordas arredondadas */
+  background: #f0f0f0;                                            /* Fundo cinza claro (light mode) */
+}
+.profile img {
+  width: 100%;                                                    /* Largura total do container */
+  height: 100%;                                                   /* Altura total do container */
+  display: block;                                                 /* Remove espaço extra abaixo da imagem */
+  object-fit: cover;                                              /* Corta imagem para cobrir o espaço sem distorcer */
+  border: 2px solid rgba(200, 200, 200, 0.3);                   /* Borda fina cinza claro */
+  border-radius: 8px;                                             /* Bordas arredondadas */
+  background: #f0f0f0;                                            /* Fundo cinza claro (light mode) */
+}
+.profile-name {
+  margin: 0.75rem 0 0.75rem;                                      /* Margem superior e inferior */
+  font-size: 0.95rem;                                             /* Tamanho da fonte */
+  font-weight: 700;                                               /* Peso da fonte em negrito */
+  color: #333;                                                  /* Cor cinza escuro (light mode) */
+  text-shadow: none;                                              /* Sem sombra (não necessária em light mode) */
+}
+@media (max-width: 480px) {                                         /* Media query para dispositivos móveis muito pequenos (até 480px) */
+  main {
+    padding: 2rem 0.8rem 2rem;                                     /* Reduz padding para telas pequenas */
+    min-height: auto;                                             /* Altura automática para não forçar espaço */
+  }
+  h1 {
+    font-size: 1.5rem;                                            /* Tamanho reduzido para mobile */
+    margin: 0 0 1.5rem;                                           /* Margem inferior reduzida */
+    letter-spacing: 0.02em;                                       /* Espaçamento entre letras reduzido */
+  }
+  .profiles {
+    width: 100%;                                                  /* Usa 100% da largura em mobile */
+    gap: 1rem;                                                    /* Espaçamento reduzido entre perfis */
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));  /* Colunas menores para mobile */
+    padding: 0 0.5rem;                                            /* Padding lateral para evitar bater nas bordas */
+  }
+  .profile {
+    border-radius: 10px;                                          /* Bordas menos arredondadas */
+  }
+  .profile-name {
+    font-size: 0.8rem;                                            /* Texto menor para mobile */
+    margin: 0.5rem 0;                                             /* Margem reduzida */
+  }
+  figure {
+    padding: 0.8rem;                                              /* Padding reduzido na figura */
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {                /* Media query para tablets (481px - 768px) */
+  main {
+    padding: 4rem 1.5rem 2rem;                                    /* Padding balanceado para tablet */
+  }
+  h1 {
+    font-size: 2rem;                                              /* Tamanho da fonte aumentado para tablet */
+    margin: 0 0 3rem;                                             /* Margem ajustada */
+  }
+  .profiles {
+    width: 80%;                                                   /* 80% da largura em tablet */
+    gap: 1.3rem;                                                  /* Espaçamento moderado */
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Colunas maiores que mobile */
+  }
+  .profile-name {
+    font-size: 0.9rem;                                            /* Tamanho intermediário */
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {               /* Media query para tablets grandes (769px - 1024px) */
+  main {
+    padding: 6rem 2rem 3rem;                                      /* Padding aumentado */
+  }
+  h1 {
+    font-size: 2.5rem;                                            /* Tamanho grande do título */
+    margin: 0 0 4rem;                                             /* Espaçamento generoso */
+  }
+  .profiles {
+    width: 70%;                                                   /* 70% da largura */
+    gap: 1.5rem;                                                  /* Espaçamento normal */
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* Colunas próximas ao tamanho original */
+  }
+  .profile-name {
+    font-size: 0.95rem;                                           /* Tamanho próximo ao original */
+  }
+}
+
+@media (min-width: 1025px) {                                       /* Media query para desktops (acima de 1025px) */
+  main {
+    padding: 10rem 1rem 3rem;                                     /* Padding máximo para desktop */
+  }
+  h1 {
+    font-size: clamp(2.5rem, 3vw, 3rem);                         /* Tamanho responsivo máximo */
+    margin: 0 0 7rem;                                             /* Margem original */
+  }
+  .profiles {
+    width: min(50%, 720px);                                       /* Mantem tamanho original */
+    gap: 1.5rem;                                                  /* Espaçamento original */
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); /* Colunas originais */
+  }
+  .profile-name {
+    font-size: 0.95rem;                                           /* Tamanho original */
+  }
+}
+
+@media (max-width: 500px) {                                        /* Media query para telas menores que 500px */
+  h1 {
+    font-size: 1.7rem;                                            /* Tamanho menor da fonte para mobile */
+  }
+  .profile {
+    border-radius: 12px;                                          /* Bordas menos arredondadas para mobile */
+  }
+}
+
+/* ==================== TEMA E BOTÃO DE ALTERNADOR ==================== */
+
+.theme-toggle {
+  position: fixed;                                                /* Posiciona o botão de forma fixa na tela */
+  top: 1.5rem;                                                    /* Distância do topo */
+  right: 1.5rem;                                                  /* Distância da direita */
+  padding: 0.8rem 1.2rem;                                         /* Padding interno do botão */
+  font-size: 0.9rem;                                              /* Tamanho da fonte */
+  font-weight: 600;                                               /* Peso da fonte em semi-negrito */
+  background: rgba(229, 9, 20, 0.8);                              /* Fundo vermelho Netflix com transparência */
+  color: #fff;                                                    /* Cor do texto branco */
+  border: 2px solid #e50914;                                      /* Borda vermelha */
+  border-radius: 25px;                                            /* Bordas bem arredondadas (botão piloto) */
+  cursor: pointer;                                                /* Cursor de ponteiro */
+  transition: all 0.3s ease;                                      /* Transição suave para todas as propriedades */
+  z-index: 1000;                                                  /* Garante que apareça acima de outros elementos */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);                     /* Sombra leve para light mode */
+}
+
+.theme-toggle:hover {
+  background: #e50914;                                            /* Fundo mais opaco no hover */
+  transform: scale(1.05);                                         /* Aumenta ligeiramente o botão */
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);                     /* Sombra mais intensa no hover */
+}
+
+.theme-toggle:active {
+  transform: scale(0.95);                                         /* Reduz ao clicar (effect de pressão) */
+}
+
+.logout-btn {
+  position: fixed;                                                /* Posiciona de forma fixa */
+  top: 1.5rem;                                                    /* Distância do topo */
+  right: 14rem;                                                   /* À esquerda do theme-toggle */
+  padding: 0.8rem 1.2rem;                                         /* Padding interno */
+  font-size: 0.9rem;                                              /* Tamanho da fonte */
+  font-weight: 600;                                               /* Semi-negrito */
+  background: rgba(100, 100, 100, 0.7);                          /* Fundo cinza com transparência */
+  color: #fff;                                                    /* Texto branco */
+  border: 2px solid rgba(255, 255, 255, 0.3);                   /* Borda clara */
+  border-radius: 25px;                                            /* Bordas bem arredondadas */
+  cursor: pointer;                                                /* Cursor de ponteiro */
+  transition: all 0.3s ease;                                      /* Transição suave */
+  z-index: 999;                                                   /* Abaixo do theme-toggle */
+}
+
+.logout-btn:hover {
+  background: rgba(120, 120, 120, 0.9);                          /* Fundo mais opaco */
+  border-color: rgba(255, 255, 255, 0.6);                       /* Borda mais visível */
+  transform: scale(1.05);                                         /* Aumenta ligeiramente */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);                    /* Sombra */
+}
+
+.logout-btn:active {
+  transform: scale(0.95);                                         /* Reduz ao clicar */
+}
+
+@media (max-width: 480px) {
+  .logout-btn {
+    top: 5.5rem;                                                  /* Posição abaixo em mobile */
+    right: 1.5rem;                                                /* À direita em mobile */
+    padding: 0.6rem 0.9rem;                                       /* Padding reduzido */
+    font-size: 0.8rem;                                            /* Font menor */
+  }
+
+  .theme-toggle {
+    top: 1rem;                                                    /* Ajusta para mobile */
+    right: 1rem;                                                  /* Ajusta para mobile */
+    padding: 0.6rem 0.9rem;                                       /* Padding reduzido */
+    font-size: 0.8rem;                                            /* Font menor */
+  }
+}
+
+/* ==================== LIGHT MODE (PADRÃO) ==================== */
+
+/* Estilos padrão já são Light Mode, não precisa de mudanças */
+
+/* ==================== DARK MODE ==================== */
+
+html.dark-mode {
+  /* O HTML com classe dark-mode muda os estilos */
+}
+
+html.dark-mode body {
+  background: radial-gradient(circle at center, #0a0a0a 0%, #1a1a1a 65%); /* Fundo mais escuro */
+  color: #e8e8e8;                                                /* Texto mais claro para melhor contraste */
+}
+
+html.dark-mode h1 {
+  color: #ff4444;                                                 /* Vermelho mais brilhante em dark mode */
+  text-shadow: 0 0 30px rgba(255, 68, 68, 0.6);                 /* Sombra de texto mais intensa */
+}
+
+html.dark-mode .profile {
+  background: rgba(10, 10, 10, 0.95);                            /* Fundo ainda mais escuro */
+  border-color: rgba(255, 255, 255, 0.08);                       /* Borda mais sutil */
+}
+
+html.dark-mode .profile:hover {
+  box-shadow: 0 16px 40px rgba(255, 68, 68, 0.4);               /* Sombra vermelha mais suave */
+  border-color: rgba(255, 100, 100, 0.5);                       /* Borda vermelha */
+}
+
+html.dark-mode .profile-name {
+  color: #f0f0f0;                                                 /* Texto mais claro */
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);                    /* Sombra mais suave */
+}
+
+html.dark-mode figure {
+  background: #000;                                              /* Fundo absolutamente preto */
+}
+
+html.dark-mode .profile img {
+  border-color: rgba(255, 255, 255, 0.1);                       /* Borda de imagem mais sutil */
+}
+
+html.dark-mode .theme-toggle {
+  background: rgba(255, 68, 68, 0.7);                           /* Botão com cor mais vermelha em dark mode */
+  border-color: #ff4444;                                          /* Borda mais vermelha */
+}
+
+html.dark-mode .theme-toggle:hover {
+  background: #ff4444;                                            /* Hover com vermelho mais vivo */
+  box-shadow: 0 4px 25px rgba(255, 68, 68, 0.6);                /* Sombra mais intensa */
+}
+
+html.dark-mode .logout-btn {
+  background: rgba(80, 80, 80, 0.8);                            /* Fundo mais escuro em dark mode */
+  border-color: rgba(255, 255, 255, 0.25);                      /* Borda mais sutil */
+}
+
+html.dark-mode .logout-btn:hover {
+  background: rgba(100, 100, 100, 0.95);                        /* Fundo mais claro no hover */
+  border-color: rgba(255, 255, 255, 0.4);                       /* Borda mais visível */
+}
+
+/* ==================== LOGIN - CONTAINER PRINCIPAL ==================== */
+
+.login-container {
+  display: flex;                                                  /* Layout flexível */
+  justify-content: center;                                        /* Centraliza horizontalmente */
+  align-items: center;                                            /* Centraliza verticalmente */
+  min-height: 100vh;                                              /* Altura mínima de 100% viewport */
+  padding: 2rem 1rem;                                             /* Padding responsivo */
+  margin: 0;                                                      /* Remove margem padrão */
+}
+
+.login-box {
+  background: rgba(20, 20, 20, 0.95);                            /* Fundo semi-transparente escuro */
+  border: 1px solid rgba(229, 9, 20, 0.3);                       /* Borda vermelha suave */
+  border-radius: 10px;                                            /* Bordas arredondadas */
+  padding: 3rem 2rem;                                             /* Padding interno generoso */
+  max-width: 450px;                                               /* Largura máxima */
+  width: 100%;                                                    /* Largura responsiva */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);                    /* Sombra profunda */
+}
+
+.netflix-logo {
+  text-align: center;                                             /* Alinha logo ao centro */
+  margin-bottom: 2rem;                                            /* Espaço abaixo */
+}
+
+.netflix-logo h2 {
+  margin: 0;                                                      /* Remove margem padrão */
+  color: #e50914;                                                /* Cor vermelha Netflix */
+  font-size: 2.5rem;                                              /* Tamanho grande */
+  letter-spacing: 0.1em;                                          /* Espaçamento entre letras */
+  font-weight: 900;                                               /* Ultra-negrito */
+  text-shadow: 0 0 15px rgba(229, 9, 20, 0.5);                  /* Sombra no texto */
+}
+
+.login-title {
+  color: #fff;                                                   /* Cor branca */
+  font-size: 1.8rem;                                              /* Tamanho grande */
+  margin: 0 0 2rem;                                               /* Espaço inferior */
+  text-align: center;                                             /* Alinha ao centro */
+  letter-spacing: 0.02em;                                         /* Espaçamento entre letras */
+}
+
+/* ==================== FORMULÁRIO DE LOGIN ==================== */
+
+.login-form {
+  display: flex;                                                  /* Layout flexível */
+  flex-direction: column;                                         /* Itens em coluna */
+  gap: 1.5rem;                                                    /* Espaçamento entre elementos */
+}
+
+.form-group {
+  display: flex;                                                  /* Layout flexível */
+  flex-direction: column;                                         /* Rótulo acima do input */
+  gap: 0.5rem;                                                    /* Espaçamento pequeno */
+}
+
+.form-label {
+  color: #fff;                                                   /* Cor branca */
+  font-size: 0.95rem;                                             /* Tamanho pequeno */
+  font-weight: 600;                                               /* Semi-negrito */
+  letter-spacing: 0.01em;                                         /* Espaçamento sutil */
+}
+
+.form-input {
+  padding: 0.9rem 1rem;                                           /* Padding interno */
+  background: rgba(30, 30, 30, 0.8);                             /* Fundo escuro */
+  border: 1px solid rgba(255, 255, 255, 0.2);                   /* Borda clara */
+  border-radius: 5px;                                             /* Bordas levemente arredondadas */
+  color: #fff;                                                   /* Cor do texto branco */
+  font-size: 1rem;                                                /* Tamanho normal */
+  font-family: inherit;                                           /* Herda fonte */
+  transition: all 0.3s ease;                                      /* Transição suave */
+}
+
+.form-input:focus {
+  outline: none;                                                  /* Remove outline padrão */
+  background: rgba(40, 40, 40, 0.95);                            /* Fundo mais claro ao focar */
+  border-color: #e50914;                                         /* Borda vermelha ao focar */
+  box-shadow: 0 0 10px rgba(229, 9, 20, 0.3);                   /* Sombra ao focar */
+}
+
+.form-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);                              /* Placeholder semi-transparente */
+}
+
+/* ==================== BOTÃO DE LOGIN ==================== */
+
+.btn-login {
+  padding: 1rem;                                                  /* Padding generoso */
+  background: linear-gradient(135deg, #e50914 0%, #b40000 100%); /* Gradiente vermelho */
+  color: #fff;                                                   /* Texto branco */
+  border: none;                                                   /* Sem borda */
+  border-radius: 5px;                                             /* Bordas arredondadas */
+  font-size: 1.05rem;                                             /* Tamanho grande */
+  font-weight: 700;                                               /* Negrito */
+  cursor: pointer;                                                /* Cursor de ponteiro */
+  transition: all 0.3s ease;                                      /* Transição suave */
+  letter-spacing: 0.05em;                                         /* Espaçamento entre letras */
+  text-transform: uppercase;                                      /* Texto em maiúsculas */
+}
+
+.btn-login:hover {
+  background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%); /* Gradiente mais vivo */
+  transform: translateY(-2px);                                    /* Levanta ligeiramente */
+  box-shadow: 0 8px 20px rgba(229, 9, 20, 0.4);                 /* Sombra no hover */
+}
+
+.btn-login:active {
+  transform: translateY(0);                                       /* Volta ao normal quando clica */
+  box-shadow: 0 4px 10px rgba(229, 9, 20, 0.3);                 /* Sombra reduzida */
+}
+
+/* ==================== RODAPÉ DO LOGIN ==================== */
+
+.login-footer {
+  text-align: center;                                             /* Alinha ao centro */
+  margin-top: 2rem;                                               /* Espaço acima */
+  padding-top: 2rem;                                              /* Espaçamento superior */
+  border-top: 1px solid rgba(255, 255, 255, 0.1);               /* Borda sutil */
+}
+
+.login-hint {
+  color: rgba(255, 255, 255, 0.7);                              /* Texto semi-transparente */
+  font-size: 0.95rem;                                             /* Tamanho pequeno */
+  margin: 0;                                                      /* Remove margem */
+}
+
+.highlight {
+  color: #e50914;                                                /* Cor vermelha Netflix */
+  font-weight: 700;                                               /* Negrito */
+  cursor: pointer;                                                /* Cursor de ponteiro */
+  transition: all 0.2s ease;                                      /* Transição suave */
+}
+
+.highlight:hover {
+  color: #ff4444;                                                /* Vermelho mais claro */
+  text-decoration: underline;                                     /* Sublinhado ao hover */
+}
+
+/* ==================== LOGIN - DARK MODE ==================== */
+
+html.dark-mode .login-box {
+  background: rgba(10, 10, 10, 0.98);                            /* Fundo ainda mais escuro */
+  border-color: rgba(255, 68, 68, 0.4);                          /* Borda vermelha mais viva */
+}
+
+html.dark-mode .login-title {
+  color: #f0f0f0;                                                /* Texto mais claro */
+}
+
+html.dark-mode .netflix-logo h2 {
+  color: #ff4444;                                                /* Vermelho mais vivo */
+  text-shadow: 0 0 20px rgba(255, 68, 68, 0.5);                 /* Sombra mais intensa */
+}
+
+html.dark-mode .form-input {
+  background: rgba(20, 20, 20, 0.9);                             /* Fundo mais escuro */
+  border-color: rgba(255, 255, 255, 0.15);                       /* Borda mais sutil */
+  color: #e8e8e8;                                                /* Texto claro */
+}
+
+html.dark-mode .form-input:focus {
+  background: rgba(30, 30, 30, 0.98);                            /* Fundo ao focar */
+  border-color: #ff4444;                                         /* Borda vermelha viva */
+  box-shadow: 0 0 15px rgba(255, 68, 68, 0.4);                  /* Sombra mais intensa */
+}
+
+html.dark-mode .btn-login {
+  background: linear-gradient(135deg, #ff4444 0%, #dd0000 100%); /* Gradiente mais vivo */
+}
+
+html.dark-mode .btn-login:hover {
+  background: linear-gradient(135deg, #ff6666 0%, #ff0000 100%); /* Gradiente ainda mais vivo */
+  box-shadow: 0 8px 25px rgba(255, 68, 68, 0.5);                /* Sombra mais intensa */
+}
+
+html.dark-mode .login-hint {
+  color: rgba(255, 255, 255, 0.6);                              /* Texto um pouco mais opaco */
+  border-top-color: rgba(255, 255, 255, 0.08);                  /* Borda mais sutil */
+}
+
+/* ==================== LOGIN - RESPONSIVO ==================== */
+
+@media (max-width: 480px) {
+  .login-box {
+    padding: 2rem 1.5rem;                                         /* Padding reduzido */
+    border-radius: 8px;                                           /* Bordas menos arredondadas */
+  }
+
+  .netflix-logo h2 {
+    font-size: 2rem;                                              /* Logo menor */
+  }
+
+  .login-title {
+    font-size: 1.5rem;                                            /* Título menor */
+    margin-bottom: 1.5rem;                                        /* Espaço reduzido */
+  }
+
+  .login-form {
+    gap: 1.2rem;                                                  /* Gap reduzido */
+  }
+
+  .form-input,
+  .btn-login {
+    font-size: 0.95rem;                                           /* Fonte um pouco menor */
+  }
+
+  .btn-login {
+    padding: 0.85rem;                                             /* Padding reduzido */
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .login-box {
+    max-width: 500px;                                             /* Largura aumentada */
+  }
+
+  .netflix-logo h2 {
+    font-size: 2.2rem;                                            /* Logo intermediária */
+  }
+}
+
+/* ==================== ANIMAÇÃO DE ENTRADA ==================== */
+
+@keyframes slideInLogin {
+  from {
+    opacity: 0;                                                   /* Inicia invisível */
+    transform: translateY(20px);                                  /* Sobe 20px */
+  }
+  to {
+    opacity: 1;                                                   /* Fica visível */
+    transform: translateY(0);                                     /* Volta à posição normal */
+  }
+}
+
+.login-box {
+  animation: slideInLogin 0.5s ease-out;                         /* Anima entrada */
+}
+
+
+.container-rodape {
+  background: rgba(20, 20, 20, 0.95);                           /* Fundo escuro para o rodapé */
+  border-top: 2px solid #e50914;                                /* Borda vermelha Netflix no topo */
+  margin-top: 3rem;                                              /* Espaço acima do rodapé */
+  padding: 2rem 1rem;                                            /* Padding interno */
+  text-align: center;                                            /* Alinha texto ao centro */
+}
+
+#rodape {
+  max-width: 1200px;                                             /* Largura máxima */
+  margin: 0 auto;                                                /* Centraliza horizontalmente */
+  color: #fff;                                                   /* Cor do texto branco */
+}
+
+.copyright {
+  font-size: 0.9rem;                                             /* Tamanho da fonte menor */
+  color: rgba(255, 255, 255, 0.7);                              /* Texto semi-transparente */
+  margin: 0 0 1.5rem;                                            /* Espaçamento inferior */
+  letter-spacing: 0.05em;                                        /* Espaçamento entre letras */
+}
+
+.footer-content {
+  display: flex;                                                 /* Layout flexível */
+  justify-content: center;                                       /* Centraliza itens */
+  align-items: center;                                           /* Alinha verticalmente */
+  flex-wrap: wrap;                                               /* Quebra em linhas se necessário */
+  gap: 2rem;                                                     /* Espaçamento entre elementos */
+}
+
+.developer-info {
+  display: flex;                                                 /* Layout flexível */
+  flex-direction: column;                                        /* Itens em coluna */
+  gap: 0.5rem;                                                   /* Espaçamento pequeno */
+}
+
+.developer-info h3 {
+  margin: 0;                                                     /* Remove margem padrão */
+  font-size: 1.1rem;                                             /* Tamanho da fonte */
+  color: #e50914;                                               /* Cor vermelha Netflix */
+  letter-spacing: 0.02em;                                        /* Espaçamento entre letras */
+}
+
+.footer-description {
+  margin: 0;                                                     /* Remove margem padrão */
+  font-size: 0.95rem;                                            /* Tamanho da fonte */
+  color: rgba(255, 255, 255, 0.8);                              /* Texto mais opaco */
+}
+
+.social-links {
+  display: flex;                                                 /* Layout flexível */
+  gap: 1.5rem;                                                   /* Espaçamento entre links */
+  justify-content: center;                                       /* Centraliza links */
+}
+
+.social-link {
+  display: inline-flex;                                          /* Flex para alinhar ícone e texto */
+  align-items: center;                                           /* Alinha verticalmente */
+  gap: 0.5rem;                                                   /* Espaçamento entre ícone e texto */
+  padding: 0.7rem 1.2rem;                                        /* Padding interno */
+  background: rgba(229, 9, 20, 0.2);                            /* Fundo vermelho suave */
+  color: #e50914;                                               /* Cor do link vermelha */
+  text-decoration: none;                                         /* Remove sublinhado */
+  border: 1px solid #e50914;                                    /* Borda vermelha */
+  border-radius: 20px;                                           /* Bordas arredondadas (estilo botão) */
+  font-size: 0.95rem;                                            /* Tamanho da fonte */
+  font-weight: 600;                                              /* Semi-negrito */
+  transition: all 0.3s ease;                                     /* Transição suave */
+}
+
+.social-link:hover {
+  background: #e50914;                                           /* Fundo vermelho no hover */
+  color: #fff;                                                   /* Texto branco no hover */
+  transform: translateY(-3px);                                   /* Move para cima ligeiramente */
+  box-shadow: 0 4px 12px rgba(229, 9, 20, 0.4);                 /* Sombra no hover */
+}
+
+.social-link i {
+  font-size: 1.1rem;                                             /* Tamanho do ícone */
+}
+
+/* ==================== RODAPÉ - DARK MODE ==================== */
+
+html.dark-mode .container-rodape {
+  background: rgba(10, 10, 10, 0.98);                           /* Fundo ainda mais escuro em dark mode */
+  border-top-color: #ff4444;                                     /* Borda vermelha mais viva */
+}
+
+html.dark-mode #rodape {
+  color: #f0f0f0;                                               /* Texto mais claro em dark mode */
+}
+
+html.dark-mode .copyright {
+  color: rgba(255, 255, 255, 0.6);                              /* Texto ligeiramente mais escuro */
+}
+
+html.dark-mode .developer-info h3 {
+  color: #ff4444;                                               /* Vermelho mais vivo em dark mode */
+}
+
+html.dark-mode .social-link {
+  background: rgba(255, 68, 68, 0.15);                          /* Fundo com vermelho vivo */
+  color: #ff4444;                                               /* Cor vermelha mais viva */
+  border-color: #ff4444;                                         /* Borda vermelha mais viva */
+}
+
+html.dark-mode .social-link:hover {
+  background: #ff4444;                                           /* Fundo vermelho vivo no hover */
+  color: #000;                                                   /* Texto preto no hover */
+  box-shadow: 0 4px 15px rgba(255, 68, 68, 0.5);                /* Sombra mais intensa */
+}
+
+/* ==================== RODAPÉ - RESPONSIVO ==================== */
+
+@media (max-width: 480px) {
+  .container-rodape {
+    padding: 1.5rem 0.75rem;                                     /* Padding reduzido para mobile */
+    margin-top: 2rem;                                            /* Margem reduzida */
+  }
+
+  .footer-content {
+    gap: 1rem;                                                   /* Espaçamento reduzido */
+    flex-direction: column;                                      /* Itens em coluna em mobile */
+  }
+
+  .social-links {
+    gap: 1rem;                                                   /* Espaçamento reduzido entre links */
+    flex-wrap: wrap;                                             /* Permite quebra se necessário */
+  }
+
+  .social-link {
+    font-size: 0.85rem;                                          /* Fonte menor */
+    padding: 0.6rem 1rem;                                        /* Padding reduzido */
+  }
+
+  .developer-info h3 {
+    font-size: 1rem;                                             /* Fonte menor */
+  }
+
+  .copyright {
+    font-size: 0.8rem;                                           /* Fonte menor */
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .container-rodape {
+    padding: 2rem 1.5rem;                                        /* Padding para tablet */
+  }
+
+  .social-links {
+    gap: 1.2rem;                                                 /* Espaçamento moderado */
+  }
+}
+
+/* ==================== CATÁLOGO / PÁGINA PRINCIPAL ==================== */
+
+.catalogue-container {
+  display: flex;                                                  /* Layout flexível */
+  flex-direction: column;                                         /* Itens em coluna */
+  min-height: 100vh;                                              /* Altura mínima de 100% da viewport */
+  background: radial-gradient(circle at center, #ffffff 0%, #e8e8e8 40%, #000000 100%); /* Gradiente claro */
+  background-attachment: fixed;                                   /* Fixa o fundo */
+}
+
+html.dark-mode .catalogue-container {
+  background: radial-gradient(circle at center, #1a1a1a 0%, #0a0a0a 40%, #000000 100%); /* Gradiente escuro */
+}
+
+.catalogue-header {
+  display: flex;                                                  /* Layout flexível */
+  justify-content: space-between;                                /* Espaço entre itens */
+  align-items: center;                                           /* Alinha verticalmente */
+  padding: 1.5rem 2rem;                                          /* Padding interno */
+  background: rgba(0, 0, 0, 0.7);                               /* Fundo semi-transparente escuro */
+  border-bottom: 2px solid #e50914;                             /* Borda vermelha embaixo */
+  position: sticky;                                              /* Fica fixo ao rolar */
+  top: 0;                                                        /* No topo */
+  z-index: 100;                                                  /* Fica acima de outros elementos */
+}
+
+.netflix-header-logo h1 {
+  margin: 0;                                                     /* Remove margem */
+  font-size: 1.8rem;                                             /* Tamanho grande */
+  color: #e50914;                                               /* Vermelho Netflix */
+  text-shadow: 0 0 20px rgba(229, 9, 20, 0.5);                  /* Sombra vermelha */
+  letter-spacing: 0.1em;                                         /* Espaçamento entre letras */
+  text-transform: uppercase;                                     /* Maiúsculas */
+}
+
+.user-profile-header {
+  display: flex;                                                 /* Layout flexível */
+  align-items: center;                                           /* Alinha verticalmente */
+  gap: 1rem;                                                     /* Espaçamento */
+}
+
+.user-name {
+  color: #fff;                                                  /* Texto branco */
+  font-size: 1rem;                                              /* Tamanho normal */
+  font-weight: 600;                                              /* Semi-negrito */
+}
+
+.user-avatar-icon {
+  width: 40px;                                                   /* Largura */
+  height: 40px;                                                  /* Altura */
+  border-radius: 50%;                                            /* Circular */
+  background: linear-gradient(135deg, #e50914, #ff4444);       /* Gradiente vermelho */
+  display: flex;                                                 /* Centraliza ícone */
+  align-items: center;                                           /* Alinha verticalmente */
+  justify-content: center;                                       /* Centraliza horizontalmente */
+  color: #fff;                                                  /* Cor branca */
+  font-size: 0.8rem;                                             /* Tamanho pequeno */
+}
+
+/* ==================== FEATURED SECTION ==================== */
+
+.featured-section {
+  position: relative;                                            /* Posicionamento relativo */
+  height: 50vh;                                                  /* Altura de 50% da viewport */
+  display: flex;                                                 /* Layout flexível */
+  align-items: flex-end;                                         /* Alinha ao final */
+  overflow: hidden;                                              /* Esconde overflow */
+  background: linear-gradient(135deg, rgba(229, 9, 20, 0.1) 0%, rgba(0, 0, 0, 0.8) 100%); /* Gradiente */
+}
+
+.featured-movie {
+  position: absolute;                                            /* Posição absoluta */
+  top: 0;                                                        /* No topo */
+  left: 0;                                                       /* Na esquerda */
+  width: 100%;                                                   /* Largura total */
+  height: 100%;                                                  /* Altura total */
+  background: linear-gradient(135deg, #ff4444, #e50914);       /* Gradiente vermelho */
+  opacity: 0.3;                                                  /* Semi-transparente */
+  z-index: 1;                                                    /* Atrás do conteúdo */
+}
+
+.featured-content {
+  position: relative;                                            /* Posição relativa */
+  z-index: 2;                                                    /* Acima da imagem */
+  padding: 2rem;                                                 /* Espaçamento interno */
+  color: #fff;                                                  /* Texto branco */
+  max-width: 500px;                                              /* Largura máxima */
+}
+
+.featured-title {
+  font-size: 3rem;                                               /* Tamanho grande */
+  font-weight: 900;                                              /* Muito negrito */
+  margin: 0 0 1rem;                                              /* Espaçamento embaixo */
+  text-transform: uppercase;                                     /* Maiúsculas */
+  letter-spacing: 0.05em;                                        /* Espaçamento entre letras */
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);                  /* Sombra preta */
+}
+
+.featured-description {
+  font-size: 1.1rem;                                             /* Tamanho grande */
+  margin: 0 0 2rem;                                              /* Espaçamento embaixo */
+  line-height: 1.6;                                              /* Altura da linha */
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);                  /* Sombra preta */
+  max-width: 400px;                                              /* Largura máxima */
+}
+
+.featured-buttons {
+  display: flex;                                                 /* Layout flexível */
+  gap: 1rem;                                                     /* Espaçamento entre botões */
+}
+
+.btn-featured {
+  padding: 0.9rem 2rem;                                          /* Espaçamento interno */
+  border: none;                                                  /* Sem borda */
+  border-radius: 5px;                                            /* Bordas arredondadas */
+  font-size: 1rem;                                               /* Tamanho da fonte */
+  font-weight: 700;                                              /* Negrito */
+  cursor: pointer;                                               /* Cursor de ponteiro */
+  transition: all 0.3s ease;                                     /* Transição suave */
+  display: flex;                                                 /* Layout flexível */
+  align-items: center;                                           /* Alinha verticalmente */
+  gap: 0.5rem;                                                   /* Espaçamento entre ícone e texto */
+  text-transform: uppercase;                                     /* Maiúsculas */
+  letter-spacing: 0.05em;                                        /* Espaçamento entre letras */
+}
+
+.btn-featured.play {
+  background: #e50914;                                          /* Fundo vermelha Netflix */
+  color: #fff;                                                  /* Texto branco */
+}
+
+.btn-featured.play:hover {
+  background: #ff4444;                                           /* Vermelho mais claro */
+  transform: scale(1.05);                                        /* Aumenta ligeiramente */
+  box-shadow: 0 8px 25px rgba(229, 9, 20, 0.5);                /* Sombra */
+}
+
+.btn-featured.info {
+  background: rgba(255, 255, 255, 0.3);                        /* Fundo semi-transparente */
+  color: #fff;                                                  /* Texto branco */
+  border: 2px solid #fff;                                       /* Borda branca */
+}
+
+.btn-featured.info:hover {
+  background: rgba(255, 255, 255, 0.5);                        /* Mais opaco no hover */
+  transform: scale(1.05);                                        /* Aumenta ligeiramente */
+}
+
+/* ==================== MOVIES SECTION ==================== */
+
+main {
+  padding: 0;                                                    /* Remove padding padrão */
+}
+
+.movies-section {
+  padding: 3rem 2rem;                                            /* Espaçamento interno */
+  z-index: 10;                                                   /* Acima, pra não conflitar */
+}
+
+.section-title {
+  font-size: 1.8rem;                                             /* Tamanho grande */
+  color: #e50914;                                               /* Vermelho Netflix */
+  margin: 0 0 2rem;                                              /* Espaçamento embaixo */
+  text-transform: uppercase;                                     /* Maiúsculas */
+  letter-spacing: 0.05em;                                        /* Espaçamento entre letras */
+  font-weight: 700;                                              /* Negrito */
+}
+
+html.dark-mode .section-title {
+  color: #ff4444;                                               /* Vermelho mais vivo em dark mode */
+}
+
+.movies-grid {
+  display: grid;                                                 /* Layout em grid */
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* Colunas responsivas */
+  gap: 1.5rem;                                                   /* Espaçamento entre cards */
+  width: 100%;                                                   /* Largura total */
+}
+
+/* ==================== MOVIE CARD ==================== */
+
+.movie-card {
+  background: rgba(30, 30, 30, 0.8);                           /* Fundo escuro */
+  border-radius: 8px;                                            /* Bordas arredondadas */
+  overflow: hidden;                                              /* Esconde overflow */
+  transition: all 0.3s ease;                                     /* Transição suave */
+  cursor: pointer;                                               /* Cursor de ponteiro */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);                   /* Sombra sutil */
+  position: relative;                                            /* Posicionamento relativo */
+}
+
+.movie-card:hover {
+  transform: translateY(-8px) scale(1.03);                       /* Move para cima e aumenta */
+  box-shadow: 0 12px 30px rgba(229, 9, 20, 0.4);               /* Sombra vermelha */
+}
+
+.movie-poster {
+  position: relative;                                            /* Posicionamento relativo */
+  width: 100%;                                                   /* Largura total */
+  padding-bottom: 150%;                                          /* Cria proporção 1:1.5 */
+  overflow: hidden;                                              /* Esconde overflow */
+  background: #1a1a1a;                                           /* Fundo cinza */
+}
+
+.poster-placeholder {
+  position: absolute;                                            /* Posição absoluta */
+  top: 0;                                                        /* No topo */
+  left: 0;                                                       /* Na esquerda */
+  width: 100%;                                                   /* Largura total */
+  height: 100%;                                                  /* Altura total */
+  background: linear-gradient(135deg, #ff4444, #e50914);       /* Gradiente vermelho */
+  display: flex;                                                 /* Layout flexível */
+  align-items: center;                                           /* Alinha verticalmente */
+  justify-content: center;                                       /* Centraliza horizontalmente */
+  color: rgba(255, 255, 255, 0.3);                             /* Cor semi-transparente */
+  font-size: 3rem;                                               /* Tamanho grande */
+}
+
+.movie-info {
+  padding: 1rem;                                                 /* Espaçamento interno */
+  background: rgba(0, 0, 0, 0.9);                              /* Fundo bem escuro */
+  display: flex;                                                 /* Layout flexível */
+  flex-direction: column;                                        /* Itens em coluna */
+  gap: 0.5rem;                                                   /* Espaçamento */
+}
+
+.movie-title {
+  margin: 0;                                                     /* Remove margem */
+  font-size: 1rem;                                               /* Tamanho normal */
+  color: #fff;                                                  /* Texto branco */
+  font-weight: 700;                                              /* Negrito */
+  line-height: 1.3;                                              /* Altura da linha */
+}
+
+.movie-year {
+  margin: 0;                                                     /* Remove margem */
+  font-size: 0.85rem;                                            /* Tamanho pequeno */
+  color: rgba(255, 255, 255, 0.6);                             /* Texto semi-transparente */
+}
+
+.movie-rating {
+  margin: 0;                                                     /* Remove margem */
+  font-size: 0.9rem;                                             /* Tamanho pequeno */
+  color: #e50914;                                               /* Cor vermelha Netflix */
+  font-weight: 600;                                              /* Semi-negrito */
+}
+
+.movie-play {
+  align-self: flex-start;                                        /* Alinha à esquerda */
+  margin-top: 0.5rem;                                            /* Espaçamento acima */
+}
+
+/* ==================== PLAY BUTTON ==================== */
+
+.btn-play {
+  width: 45px;                                                   /* Largura */
+  height: 45px;                                                  /* Altura */
+  border-radius: 50%;                                            /* Circular */
+  background: #e50914;                                          /* Fundo vermelho Netflix */
+  color: #fff;                                                  /* Texto branco */
+  border: none;                                                  /* Sem borda */
+  cursor: pointer;                                               /* Cursor de ponteiro */
+  display: flex;                                                 /* Layout flexível */
+  align-items: center;                                           /* Alinha verticalmente */
+  justify-content: center;                                       /* Centraliza horizontalmente */
+  transition: all 0.3s ease;                                     /* Transição suave */
+  font-size: 1.2rem;                                             /* Tamanho do ícone */
+  box-shadow: 0 4px 12px rgba(229, 9, 20, 0.4);                /* Sombra */
+}
+
+.btn-play:hover {
+  background: #ff4444;                                           /* Vermelho mais claro */
+  transform: scale(1.1);                                         /* Aumenta */
+  box-shadow: 0 8px 20px rgba(229, 9, 20, 0.6);                /* Sombra maior */
+}
+
+.btn-play:active {
+  transform: scale(0.95);                                        /* Diminui ao clicar */
+}
+
+/* ==================== CATÁLOGO - DARK MODE ==================== */
+
+html.dark-mode .catalogue-header {
+  background: rgba(0, 0, 0, 0.9);                              /* Ainda mais escuro */
+  border-bottom-color: #ff4444;                                 /* Borda vermelha viva */
+}
+
+html.dark-mode .netflix-header-logo h1 {
+  color: #ff4444;                                               /* Vermelho mais vivo */
+  text-shadow: 0 0 25px rgba(255, 68, 68, 0.6);                /* Sombra mais intensa */
+}
+
+html.dark-mode .movie-card {
+  background: rgba(15, 15, 15, 0.9);                           /* Ainda mais escuro */
+}
+
+html.dark-mode .poster-placeholder {
+  background: linear-gradient(135deg, #ff6666, #ff0000);       /* Gradiente mais vivo */
+  color: rgba(255, 255, 255, 0.2);                             /* Cor mais invisível */
+}
+
+html.dark-mode .btn-play {
+  background: #ff4444;                                          /* Vermelho mais vivo */
+  box-shadow: 0 4px 15px rgba(255, 68, 68, 0.5);               /* Sombra mais intensa */
+}
+
+html.dark-mode .btn-play:hover {
+  background: #ff6666;                                          /* Ainda mais claro */
+  box-shadow: 0 8px 25px rgba(255, 68, 68, 0.7);               /* Sombra maior */
+}
+
+html.dark-mode .btn-featured.play {
+  background: #ff4444;                                          /* Vermelho mais vivo */
+}
+
+html.dark-mode .btn-featured.play:hover {
+  background: #ff6666;                                          /* Ainda mais claro */
+  box-shadow: 0 8px 30px rgba(255, 68, 68, 0.6);               /* Sombra maior */
+}
+
+/* ==================== CATÁLOGO - RESPONSIVO ==================== */
+
+@media (max-width: 480px) {
+  .catalogue-header {
+    padding: 1rem 1.5rem;                                        /* Padding reduzido */
+    flex-direction: column;                                      /* Itens em coluna */
+    gap: 1rem;                                                   /* Espaçamento entre itens */
+    text-align: center;                                          /* Texto centralizado */
+  }
+
+  .netflix-header-logo h1 {
+    font-size: 1.3rem;                                           /* Tamanho reduzido */
+  }
+
+  .featured-section {
+    height: 40vh;                                                /* Altura reduzida */
+  }
+
+  .featured-title {
+    font-size: 1.8rem;                                           /* Tamanho reduzido */
+  }
+
+  .featured-description {
+    font-size: 0.95rem;                                          /* Tamanho reduzido */
+    max-width: 100%;                                             /* Usa a largura total */
+  }
+
+  .featured-content {
+    padding: 1.5rem;                                             /* Padding reduzido */
+    max-width: 100%;                                             /* Usa a largura total */
+  }
+
+  .featured-buttons {
+    gap: 0.5rem;                                                 /* Espaçamento reduzido */
+    flex-wrap: wrap;                                             /* Permite quebra de linha */
+  }
+
+  .btn-featured {
+    padding: 0.7rem 1.5rem;                                      /* Padding reduzido */
+    font-size: 0.9rem;                                           /* Tamanho reduzido */
+  }
+
+  .movies-section {
+    padding: 2rem 1rem;                                          /* Padding reduzido */
+  }
+
+  .section-title {
+    font-size: 1.3rem;                                           /* Tamanho reduzido */
+    margin: 0 0 1.5rem;                                          /* Margem reduzida */
+  }
+
+  .movies-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); /* Colunas menores */
+    gap: 1rem;                                                   /* Gap reduzido */
+  }
+
+  .movie-card:hover {
+    transform: translateY(-5px) scale(1.02);                     /* Efeito menos pronounced */
+  }
+
+  .btn-play {
+    width: 40px;                                                 /* Tamanho reduzido */
+    height: 40px;
+    font-size: 1rem;
+  }
+
+  .movie-title {
+    font-size: 0.9rem;                                           /* Tamanho reduzido */
+  }
+
+  .movie-year,
+  .movie-rating {
+    font-size: 0.75rem;                                          /* Tamanho reduzido */
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .catalogue-header {
+    padding: 1.2rem 1.8rem;                                      /* Padding moderado */
+  }
+
+  .featured-section {
+    height: 45vh;                                                /* Altura moderada */
+  }
+
+  .featured-title {
+    font-size: 2.2rem;                                           /* Tamanho moderado */
+  }
+
+  .movies-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Colunas moderadas */
+    gap: 1.2rem;                                                 /* Gap moderado */
+  }
+
+  .section-title {
+    font-size: 1.5rem;                                           /* Tamanho moderado */
+  }
+}
+
+@media (min-width: 1025px) {
+  .featured-section {
+    height: 55vh;                                                /* Altura maior para desktop */
+  }
+
+  .featured-title {
+    font-size: 3.5rem;                                           /* Tamanho grande */
+  }
+
+  .featured-description {
+    font-size: 1.2rem;                                           /* Tamanho grande */
+  }
+
+  .movies-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Colunas grandes */
+    gap: 2rem;                                                   /* Gap grande */
+  }
+
+  .section-title {
+    font-size: 2rem;                                             /* Tamanho grande */
+    margin: 0 0 2.5rem;                                          /* Margem grande */
+  }
+}
+
+/* ==================== ACESSIBILIDADE ==================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .social-link,
+  .movie-card,
+  .btn-play,
+  .btn-featured {
+    transition: none;                                            /* Remove transição para acessibilidade */
+  }
+}

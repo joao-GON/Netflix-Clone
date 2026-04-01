@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+<!-- O atributo lang define o idioma principal da página para acessibilidade & SEO -->
+<head>
+    <!-- Define o conjunto de caracteres para UTF-8, suportando caracteres acentuados em PT-BR -->
+    <meta charset="UTF-8">
+    <!-- Configura layout responsivo em dispositivos móveis -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Título da aba do navegador -->
+    <title>Netflix - Login</title>
+    <!-- Conecta o arquivo de estilos CSS -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="Icons/netflix_macos_bigsur_icon_189917.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="Icons/netflix_macos_bigsur_icon_189917.png">
+    <!-- Link para Font Awesome icons (para ícones de redes sociais) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Conecta o arquivo JavaScript para funcionalidades interativas -->
+    <script src="script.js"></script>
+    <!-- Conecta o arquivo de navegação para gerenciar stack navigation -->
+    <script src="navigation.js"></script>
+</head>
+
+<body>
+    <!-- Botão para alternar entre Dark Mode e Light Mode -->
+    <button id="theme-toggle" class="theme-toggle" aria-label="Mudar para Dark Mode">
+        🌙 Dark Mode
+    </button>
+    
+    <main class="login-container">
+    <!-- Conteúdo principal da página de login -->
+
+        <div class="login-box">
+        <!-- Caixa do formulário de login -->
+            
+            <div class="netflix-logo">
+            <!-- Logo/Marca Netflix -->
+                <h2>NETFLIX</h2>
+            </div>
+
+            <h1 class="login-title">Bem-vindo de volta!</h1>
+            <!-- Título da tela de login -->
+
+            <form id="login-form" class="login-form" onsubmit="handleLogin(event)">
+            <!-- Formulário de login com evento onsubmit -->
+
+                <div class="form-group">
+                <!-- Grupo do campo de email -->
+                    <label for="email" class="form-label">Email</label>
+                    <!-- Label para acessibilidade -->
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        class="form-input" 
+                        placeholder="Insira seu email"
+                        required
+                        aria-label="Campo de email"
+                    >
+                    <!-- Input de email com validação -->
+                </div>
+
+                <div class="form-group">
+                <!-- Grupo do campo de senha -->
+                    <label for="password" class="form-label">Senha</label>
+                    <!-- Label para acessibilidade -->
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        class="form-input" 
+                        placeholder="Insira sua senha"
+                        required
+                        aria-label="Campo de senha"
+                    >
+                    <!-- Input de senha com validação -->
+                </div>
+
+                <button type="submit" class="btn-login">
+                <!-- Botão de envio do formulário -->
+                    Entrar
+                </button>
+
+            </form>
+            <!-- Fim do formulário -->
+
+            <div class="login-footer">
+            <!-- Rodapé da seção de login -->
+                <p class="login-hint">
+                    Primeira vez? 
+                    <span class="highlight">Crie sua conta agora</span>
+                </p>
+                <!-- Mensagem com destaque para nova conta -->
+            </div>
+
+        </div>
+        <!-- Fim da caixa de login -->
+
+    </main>
+    <!-- Fim do conteúdo principal -->
+
+    <!-- RODAPÉ DA PÁGINA -->
+    <footer class="container-rodape">
+    <!-- Container do rodapé com informações do desenvolvedor -->
+        <div id="rodape">
+        <!-- Seção interna do rodapé -->
+            <p class="copyright">&copy; 2026 - Todos os direitos reservados</p>
+            <!-- Ano e copyright -->
+            
+            <div class="footer-content">
+                <div class="developer-info">
+                <!-- Informações do desenvolvedor -->
+                    <h3>Desenvolvido por Joao-GON</h3>
+                    <!-- Nome do desenvolvedor -->
+                    <p class="footer-description">Conheça meu trabalho</p>
+                    <!-- Descrição chamada para ação -->
+                </div>
+
+                <div class="social-links">
+                <!-- Links para redes sociais -->
+                    <a href="https://www.linkedin.com/in/jo%C3%A3o-gon%C3%A7alves01/" target="_blank" rel="noopener noreferrer" class="social-link">
+                    <!-- Link do LinkedIn com target="_blank" para abrir em nova aba -->
+                        <i class="fa-brands fa-linkedin"></i> Linkedin
+                    </a>
+                    
+                    <a href="https://github.com/joao-GON" target="_blank" rel="noopener noreferrer" class="social-link">
+                    <!-- Link do GitHub com target="_blank" para abrir em nova aba -->
+                        <i class="fa-brands fa-github"></i> Github
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Fim do rodapé -->
+
+</body>
+
+</html>

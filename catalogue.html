@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+<!-- O atributo lang define o idioma principal da página para acessibilidade & SEO -->
+<head>
+    <!-- Define o conjunto de caracteres para UTF-8, suportando caracteres acentuados em PT-BR -->
+    <meta charset="UTF-8">
+    <!-- Configura layout responsivo em dispositivos móveis -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Título da aba do navegador -->
+    <title>Netflix - Catálogo</title>
+    <!-- Conecta o arquivo de estilos CSS -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="Icons/netflix_macos_bigsur_icon_189917.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="Icons/netflix_macos_bigsur_icon_189917.png">
+    <!-- Link para Font Awesome icons (para ícones de play e outros) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Conecta o arquivo JavaScript para funcionalidades interativas -->
+    <script src="script.js"></script>
+    <!-- Conecta o arquivo de navegação para gerenciar stack navigation -->
+    <script src="navigation.js"></script>
+
+    <script>
+        // Carrega o nome do perfil quando a página é carregada
+        document.addEventListener('DOMContentLoaded', function() {
+            const state = getCurrentState();
+            if (state && state.profileName) {
+                document.getElementById('user-name').textContent = state.profileName;
+            }
+        });
+    </script>
+
+<body class="catalogue-page">
+    <!-- Botão para alternar entre Dark Mode e Light Mode -->
+    <button id="theme-toggle" class="theme-toggle" aria-label="Mudar para Dark Mode">
+        🌙 Dark Mode
+    </button>
+    
+    <!-- Botão de Logout -->
+    <button id="logout-btn" class="logout-btn" aria-label="Fazer logout e voltar ao login">
+        🚪 Logout
+    </button>
+    
+    <!-- HEADER DO CATÁLOGO -->
+    <header class="catalogue-header">
+    <!-- Cabeçalho com informações do perfil e busca -->
+        <div class="header-content">
+            <div class="netflix-header-logo">
+            <!-- Logo Netflix no cabeçalho -->
+                <h1>NETFLIX</h1>
+            </div>
+
+            <div class="user-profile-header">
+            <!-- Informações do usuário logado -->
+                <span class="user-name" id="user-name">Alírio</span>
+                <!-- Nome do perfil selecionado -->
+            </div>
+        </div>
+    </header>
+
+    <main class="catalogue-container">
+    <!-- Container principal do catálogo -->
+
+        <!-- SEÇÃO: DESTAQUE DO FILME -->
+        <section class="featured-section" aria-label="Filme em destaque">
+        <!-- Seção com filme destaque (banner grande) -->
+            <div class="featured-movie">
+                <div class="featured-content">
+                    <h2 class="featured-title">Chegada na Terra</h2>
+                    <!-- Título do filme destaque -->
+                    <p class="featured-description">Um épico de ficção científica que desafia a imaginação</p>
+                    <!-- Descrição breve -->
+                    
+                    <div class="featured-buttons">
+                    <!-- Botões de ação do filme destaque -->
+                        <button class="btn-play featured-play">
+                        <!-- Botão Play grande -->
+                            <i class="fas fa-play"></i> Assistir Agora
+                        </button>
+                        <button class="btn-info featured-info">
+                        <!-- Botão de Mais Informações -->
+                            <i class="fas fa-info-circle"></i> Mais Informações
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO: FILMES EM DESTAQUE -->
+        <section class="movies-section">
+        <!-- Seção com grade de filmes -->
+            <h2 class="section-title">Destaques para Você</h2>
+            <!-- Título da seção -->
+
+            <div class="movies-grid" role="grid" aria-label="Grade de filmes em destaque">
+            <!-- Grid responsiva de filmes -->
+
+                <!-- FILME 1 -->
+                <article class="movie-card" role="gridcell">
+                    <div class="movie-poster">
+                    <!-- Poster do filme (imagem) -->
+                        <div class="poster-placeholder" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                            <i class="fas fa-film"></i>
+                        </div>
+                    </div>
+                    <div class="movie-info">
+                    <!-- Informações do filme -->
+                        <h3 class="movie-title">Interstellar</h3>
+                        <!-- Título do filme -->
+                        <p class="movie-year">2014</p>
+                        <!-- Ano de lançamento -->
+                        <p class="movie-rating">⭐ 8.6/10</p>
+                        <!-- Classificação -->
+                        <button class="btn-play movie-play">
+                        <!-- Botão Play do card -->
+                            <i class="fas fa-play"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- FILME 2 -->
+                <article class="movie-card" role="gridcell">
+                    <div class="movie-poster">
+                        <div class="poster-placeholder" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                            <i class="fas fa-film"></i>
+                        </div>
+                    </div>
+                    <div class="movie-info">
+                        <h3 class="movie-title">Inception</h3>
+                        <p class="movie-year">2010</p>
+                        <p class="movie-rating">⭐ 8.8/10</p>
+                        <button class="btn-play movie-play">
+                            <i class="fas fa-play"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- FILME 3 -->
+                <article class="movie-card" role="gridcell">
+                    <div class="movie-poster">
+                        <div class="poster-placeholder" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                            <i class="fas fa-film"></i>
+                        </div>
+                    </div>
+                    <div class="movie-info">
+                        <h3 class="movie-title">The Matrix</h3>
+                        <p class="movie-year">1999</p>
+                        <p class="movie-rating">⭐ 8.7/10</p>
+                        <button class="btn-play movie-play">
+                            <i class="fas fa-play"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- FILME 4 -->
+                <article class="movie-card" role="gridcell">
+                    <div class="movie-poster">
+                        <div class="poster-placeholder" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                            <i class="fas fa-film"></i>
+                        </div>
+                    </div>
+                    <div class="movie-info">
+                        <h3 class="movie-title">Oppenheimer</h3>
+                        <p class="movie-year">2023</p>
+                        <p class="movie-rating">⭐ 8.3/10</p>
+                        <button class="btn-play movie-play">
+                            <i class="fas fa-play"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- FILME 5 -->
+                <article class="movie-card" role="gridcell">
+                    <div class="movie-poster">
+                        <div class="poster-placeholder" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
+                            <i class="fas fa-film"></i>
+                        </div>
+                    </div>
+                    <div class="movie-info">
+                        <h3 class="movie-title">Duna</h3>
+                        <p class="movie-year">2021</p>
+                        <p class="movie-rating">⭐ 8.0/10</p>
+                        <button class="btn-play movie-play">
+                            <i class="fas fa-play"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- FILME 6 -->
+                <article class="movie-card" role="gridcell">
+                    <div class="movie-poster">
+                        <div class="poster-placeholder" style="background: linear-gradient(135deg, #ff9a56 0%, #ff6a88 100%);">
+                            <i class="fas fa-film"></i>
+                        </div>
+                    </div>
+                    <div class="movie-info">
+                        <h3 class="movie-title">Avatar</h3>
+                        <p class="movie-year">2009</p>
+                        <p class="movie-rating">⭐ 7.9/10</p>
+                        <button class="btn-play movie-play">
+                            <i class="fas fa-play"></i>
+                        </button>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- SEÇÃO: AÇÃO & AVENTURA -->
+        <section class="movies-section">
+            <h2 class="section-title">Ação & Aventura</h2>
+
+            <div class="movies-grid" role="grid" aria-label="Filmes de ação e aventura">
+
+                <article class="movie-card" role="gridcell">
+                    <div class="movie-poster">
+                        <div class="poster-placeholder" style="background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);">
+                            <i class="fas fa-film"></i>
+                        </div>
+                    </div>
+                    <div class="movie-info">
+                        <h3 class="movie-title">Mad Max Fury Road</h3>
+                        <p class="movie-year">2015</p>
+                        <p class="movie-rating">⭐ 8.1/10</p>
+                        <button class="btn-play movie-play">
+                            <i class="fas fa-play"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <article class="movie-card" role="gridcell">
+                    <div class="movie-poster">
+                        <div class="poster-placeholder" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                            <i class="fas fa-film"></i>
+                        </div>
+                    </div>
+                    <div class="movie-info">
+                        <h3 class="movie-title">Homem de Ferro</h3>
+                        <p class="movie-year">2008</p>
+                        <p class="movie-rating">⭐ 7.9/10</p>
+                        <button class="btn-play movie-play">
+                            <i class="fas fa-play"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <article class="movie-card" role="gridcell">
+                    <div class="movie-poster">
+                        <div class="poster-placeholder" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                            <i class="fas fa-film"></i>
+                        </div>
+                    </div>
+                    <div class="movie-info">
+                        <h3 class="movie-title">John Wick</h3>
+                        <p class="movie-year">2014</p>
+                        <p class="movie-rating">⭐ 7.4/10</p>
+                        <button class="btn-play movie-play">
+                            <i class="fas fa-play"></i>
+                        </button>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- RODAPÉ DA PÁGINA -->
+    <footer class="container-rodape">
+    <!-- Container do rodapé com informações do desenvolvedor -->
+        <div id="rodape">
+        <!-- Seção interna do rodapé -->
+            <p class="copyright">&copy; 2026 - Todos os direitos reservados</p>
+            <!-- Ano e copyright -->
+            
+            <div class="footer-content">
+                <div class="developer-info">
+                <!-- Informações do desenvolvedor -->
+                    <h3>Desenvolvido por Joao-GON</h3>
+                    <!-- Nome do desenvolvedor -->
+                    <p class="footer-description">Conheça meu trabalho</p>
+                    <!-- Descrição chamada para ação -->
+                </div>
+
+                <div class="social-links">
+                <!-- Links para redes sociais -->
+                    <a href="https://www.linkedin.com/in/jo%C3%A3o-gon%C3%A7alves01/" target="_blank" rel="noopener noreferrer" class="social-link">
+                    <!-- Link do LinkedIn com target="_blank" para abrir em nova aba -->
+                        <i class="fa-brands fa-linkedin"></i> Linkedin
+                    </a>
+                    
+                    <a href="https://github.com/joao-GON" target="_blank" rel="noopener noreferrer" class="social-link">
+                    <!-- Link do GitHub com target="_blank" para abrir em nova aba -->
+                        <i class="fa-brands fa-github"></i> Github
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Fim do rodapé -->
+
+</body>
+
+</html>
